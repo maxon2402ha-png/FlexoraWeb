@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700;900&family=Montserrat:wght@400;500;700;900&display=swap');
+
+/* === Глобальные стили === */
+body {
+  @apply bg-main text-white font-sans;
+  /* Фон: плавный переход от светлого фиолетового сверху к темному */
+  background-image: radial-gradient(circle at 50% -10%, #473452 0%, #1A121F 60%);
+  background-attachment: fixed;
+}
+
+/* Скрываем скроллбар */
+::-webkit-scrollbar { display: none; }
+html { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* === UI Компоненты === */
+
+/* 1. Карточка (Бордовая) */
+.solid-card {
+  background-color: #521224;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.solid-card:hover {
+  transform: translateY(-5px);
+  background-color: #5e162a; /* Чуть светлее при наведении */
+  border-color: rgba(82, 18, 36, 0.5);
+}
+
+/* 2. Поля ввода (Фиолетовые, для контраста с бордовыми кнопками) */
+.input-field {
+  background-color: #42304C; /* Темно-фиолетовый */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.input-field:focus {
+  background-color: #473452; /* Светлее при фокусе */
+  outline: 2px solid #521224;
+  box-shadow: 0 0 20px rgba(82, 18, 36, 0.4);
+}
+
+/* 3. Свечение (теперь бордовое, а не ярко-красное) */
+.neon-shadow {
+  box-shadow: 0 0 20px rgba(82, 18, 36, 0.4), 0 0 40px rgba(82, 18, 36, 0.1);
+}
+
+.neon-shadow:hover {
+  box-shadow: 0 0 30px rgba(82, 18, 36, 0.6), 0 0 60px rgba(82, 18, 36, 0.2);
+}
+
+/* 4. Градиент карточки слайдера */
+.card-gradient {
+  background: linear-gradient(135deg, #521224 0%, #1A121F 100%);
+}
+
+/* === Анимации === */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.05); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+.bg-noise {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none; z-index: 50;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
