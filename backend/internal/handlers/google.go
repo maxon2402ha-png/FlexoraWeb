@@ -8,6 +8,7 @@ import (
 	"flexora-backend/internal/utils"
 	"fmt" // <--- ДОБАВЛЕНО ДЛЯ ОТЛАДКИ
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"golang.org/x/oauth2"
@@ -18,9 +19,9 @@ import (
 var googleOauthConfig = &oauth2.Config{
 	RedirectURL: "http://localhost:8080/auth/google/callback",
 	// Твой Client ID
-	ClientID: "181462232844-7euo7s36qc1toa59nmm5q2h8gvgnjr5d.apps.googleusercontent.com",
+	ClientID: os.Getenv("GOOGLE_CLIENT_ID"),
 	// ВАЖНО: Вставь сюда Client Secret из консоли Google (начинается на GOCSPX-...)
-	ClientSecret: "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",
+	ClientSecret: os.Getenv("GOOGLE_CLIENT_SECRET"),
 	Scopes:       []string{"https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"},
 	Endpoint:     google.Endpoint,
 }
